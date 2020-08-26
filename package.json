@@ -1,0 +1,24 @@
+{
+  "name": "lchat",
+  "version": "1.0.0",
+  "description": "LChat est un simple Chatbot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LProgead/LChatBot.git"
+  },
+  "author": "LProgead",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LProgead/LChatBot/issues"
+  },
+  "homepage": "https://github.com/LProgead/LChatBot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "mysql": "^2.18.1"
+  }
+}
