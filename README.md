@@ -42,7 +42,8 @@ Je ne suis pas fermé à l'idée de donner à certains utilisateurs une dérogat
 - Tout d'abord, il vous faut avoir installé Node.JS sur votre ordinateur/serveur.
 - Ensuite, vous pouvez cloner le repository, effectuer la commande `npm i` dans le dossier résultant.
 - Créez un fichier .env dans lequel vous indiquez 
-```token=VOTRE TOKEN
+```
+token=VOTRE TOKEN
 db_id=IDENTIFIANT DE LA BASE DE DONNÉES
 db_mdp=MOT DE PASSE DE LA BASE DE DONNÉES
 ```
