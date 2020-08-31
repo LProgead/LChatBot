@@ -49,3 +49,7 @@ db_mdp=MOT DE PASSE DE LA BASE DE DONNÉES
 ```
 - Pour lancer le programme, lancez `node .`.
 Et là, swhoosh !, votre application Discord se lance 😁
+
+# Avertissement
+**Attention ! LChatBot enregistrera tous les messages qu'il lit. Évidemment, ces derniers peuvent être supprimés en me contactant par [e-mail](mailto:lprogead@mailo.com), via [Twitter](https://twitter.com/lprogead) ou via Discord (LProgead#3667), mais la prudence est de mise.
+Si vous ne voulez pas que LChatBot lise les messages de tel ou tel salon Discord, enlevez-lui cette permission.**
