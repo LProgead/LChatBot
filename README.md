@@ -12,7 +12,7 @@ Actuellement, vous ne pouvez retrouver LChatBot uniquement sur Discord grâce à
 Il est prévu qu'une version Web soit développée, affaire à suivre.
 
 ### Comment participer au projet ?
-Votre aide est la bienvenue ! Vous pouvez aider LChatBot à apprendre de nouvelles phrases en l'ajoutant sur votre serveur avec son [lien d'invitation](https://discord.com/api/oauth2/authorize?client_id=737659120219586652&permissions=67584&scope=bot), deplus, grâce à ça, plus d'utilisateurs le connaîtront et ça, ça me fera très plaisir 🥰
+Votre aide est la bienvenue ! Vous pouvez aider LChatBot à apprendre de nouvelles phrases en l'ajoutant sur votre serveur avec son [lien d'invitation](https://discord.com/api/oauth2/authorize?client_id=742780203717361756&permissions=3072&scope=bot), deplus, grâce à ça, plus d'utilisateurs le connaîtront et ça, ça me fera très plaisir 🥰
 
 ### Pour plus d'informations...
 ...n'hésitez pas à me contacter par [e-mail](mailto:lprogead@mailo.com), via [Twitter](https://twitter.com/lprogead) ou via Discord (LProgead#3667).
