@@ -22,6 +22,8 @@ client.on('message', message => {
     if (message.author.bot) return;
 
     if (!message.guild) {
+        if (message.content.toLocaleLowerCase() === "") return;
+
         let answerd = 0;
 
         connection.query(`SELECT * FROM answers`, function(error, results, fields) {
