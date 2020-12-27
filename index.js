@@ -6,7 +6,9 @@ require('dotenv').config();
 client.login(process.env.token);
 
 client.on('ready', () => {
-    console.log(`[DEMARRAGE] Lancé sur ${client.guilds.cache.size} serveurs avec ${client.users.cache.size} utilisateurs.`)
+    console.log(`[DEMARRAGE] Lancé sur ${client.guilds.cache.size} serveurs avec ${client.users.cache.size} utilisateurs.`);
+
+    client.user.setPresence(`Discute avec ${client.users.cache.size} sur ${client.guilds.cache.size} serveurs !`)
 });
 
 const connection = mysql.createConnection({
