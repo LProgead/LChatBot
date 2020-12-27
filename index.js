@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({ fetchAllMembers });
 const mysql = require('mysql');
 require('dotenv').config();
 
