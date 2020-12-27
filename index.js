@@ -24,8 +24,6 @@ client.on('message', message => {
     if (message.author.bot) return;
 
     if (!message.guild) {
-        if (message.content.toLocaleLowerCase() === "") return;
-
         let answerd = 0;
 
         connection.query(`SELECT * FROM answers`, function(error, results, fields) {
@@ -58,6 +56,8 @@ client.on('message', message => {
     } else {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id != message.author.id, { max: 1 });
         collector.on('collect', answer => {
+            if (answer.author.bot) return;
+
             connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase()}'`, function(error, results1, fields) {
                 if (!results1 || !results1[0]) {
                     connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase()}', '${message.content.toLocaleLowerCase()}')`);
