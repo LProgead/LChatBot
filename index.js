@@ -24,8 +24,16 @@ client.on('message', message => {
     if (message.author.bot) return;
 
     if (!message.guild) {
-        if (message.content.toLocaleLowerCase() === "ne m'enregistrez pas") {
+        if (message.content.toLowerCase() === "ne m'enregistrez pas") {
             connection.query(`INSERT INTO record (ID, discord) VALUES (NULL, '${message.author.id})`);
+
+            const saved = new Discord.MessageEmbed()
+                .setAuthor(message.author.username, message.author.displayAvatarURL())
+                .setTitle('Vos préférences ont bien été enregistrées !')
+                .setFooter('SNCF Bot, un bot signé LProgead.', client.user.displayAvatarURL())
+                .setTimestamp()
+            
+            message.channel.send(saved);
         }
 
         let answerd = 0;
