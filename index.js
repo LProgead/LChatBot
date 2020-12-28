@@ -101,7 +101,7 @@ client.on('message', message => {
                 if (!results1 || !results1[0]) {
                     const collector = new Discord.MessageCollector(message.channel, m => m.author.id != message.author.id, { max: 1 });
                     collector.on('collect', answer => {
-                        if (message.author.bot) return;
+                        if (answer.author.bot) return;
 
                         connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
                             if (!results2 || !results2[0]) {
