@@ -55,7 +55,7 @@ client.on('message', message => {
                             message.channel.send(unknown);
 
                             const dkembed = new Discord.MessageEmbed()
-                                .setAuthor('Phrase non connue')
+                                .setAuthor('Phrase inconnue')
                                 .setColor('FF2200')
                                 .setDescription(`L'utilisateur ${message.author.tag} (${message.author.id}) vient de me dire quelque chose d'inconnu : \n\`\`\`${message.content}\`\`\``)
                                 .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
