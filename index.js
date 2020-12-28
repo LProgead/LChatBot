@@ -25,12 +25,12 @@ client.on('message', message => {
 
     if (!message.guild) {
         if (message.content.toLowerCase() === "ne m'enregistrez pas") {
-            connection.query(`INSERT INTO record (ID, discord) VALUES (NULL, '${message.author.id})`);
+            connection.query(`INSERT INTO record (ID, discord) VALUES (NULL, '${message.author.id}')`);
 
             const saved = new Discord.MessageEmbed()
                 .setAuthor(message.author.username, message.author.displayAvatarURL())
                 .setTitle('Vos préférences ont bien été enregistrées !')
-                .setFooter('SNCF Bot, un bot signé LProgead.', client.user.displayAvatarURL())
+                .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                 .setTimestamp()
             
             message.channel.send(saved);
@@ -44,12 +44,19 @@ client.on('message', message => {
                     answerd = 1;
                     connection.query(`SELECT * FROM answers WHERE refer_to='${message.content.toLocaleLowerCase()}'`, function (error, results2, fields) {
                         if (!results2 || !results2[0]) {
-                            message.channel.send('Je ne sais que répondre...');
+                            const unknown = new Discord.MessageEmbed()
+                                .setAuthor(message.author.username, message.author.displayAvatarURL())
+                                .setDescription('Je ne sais que répondre...')
+                                .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
+                                .setTimestamp()
+                            
+                            message.channel.send(unknown);
 
                             const dkembed = new Discord.MessageEmbed()
                                 .setAuthor('Phrase non connue')
                                 .setColor('FF2200')
                                 .setDescription(`L'utilisateur ${message.author.tag} (${message.author.id}) vient de me dire quelque chose d'inconnu : \n\`\`\`${message.content}\`\`\``)
+                                .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                                 .setTimestamp()
 
                             return client.channels.cache.get('743017774942650390').send(dkembed);
@@ -59,7 +66,13 @@ client.on('message', message => {
 
                         tosend = tosend.charAt(0).toUpperCase() + tosend.slice(1);
 
-                        message.channel.send(tosend);
+                        const answer = new Discord.MessageEmbed()
+                            .setAuthor(message.author.username, message.author.displayAvatarURL())
+                            .setDescription(tosend)
+                            .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
+                            .setTimestamp()
+                        
+                        message.channel.send(answer);
                     });
                 }
             });
@@ -75,7 +88,8 @@ client.on('message', message => {
                             const addembed = new Discord.MessageEmbed()
                                 .setAuthor('Phrase ajoutée')
                                 .setColor('FAFAFA')
-                                .setDescription(`L'utilisateur ${message.author.tag} (${message.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLocaleLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
+                                .setDescription(`L'utilisateur ${answer.author.tag} (${answer.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLocaleLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
+                                .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                                 .setTimestamp()
 
                             client.channels.cache.get('743054216368750602').send(addembed);
