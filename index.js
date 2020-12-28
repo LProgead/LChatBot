@@ -35,7 +35,7 @@ client.on('message', message => {
                 .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                 .setTimestamp()
 
-            message.channel.send(saved);
+            return message.channel.send(saved);
         }
 
         let answerd = 0;
@@ -85,7 +85,7 @@ client.on('message', message => {
                 const unknown_user = new Discord.MessageEmbed()
                     .setAuthor(message.author.username, message.author.displayAvatarURL())
                     .setTitle('Enchanté, je suis LChatBot !')
-                    .setDescription('Laissez-moi me présenter, je suis un chatbot qui apprend grâce aux messages envoyés sur les serveurs où je suis présent. \nÉtant donné que j\'enregistre tous les messages que je rencontre, je me dois bien de vous prévenir que vous pouvez refuser cette collecte de vos messages en envoyant, ici même, le message suivant : `Ne m\'enregistrez pas`. \nDans un soucis de confidentialité, notre équipe ne sera, bien sûr, pas informé que vous avez refusé cette collecte. \n*Notez bien que cela ne vous empêche pas d\'utiliser le service ^^*')
+                    .setDescription('Laissez-moi me présenter, je suis un chatbot qui apprend grâce aux messages envoyés sur les serveurs où je suis présent. \nÉtant donné que j\'enregistre tous les messages que je rencontre, je me dois bien de vous prévenir que vous pouvez refuser cette collecte de vos messages en envoyant, ici même, le message suivant : `Ne m\'enregistrez pas`. \n**Si vous ne vous opposez pas à cette collecte, merci de ne __PAS__ répondre à ce message.** \nDans un soucis de confidentialité, notre équipe ne sera, bien sûr, pas informé que vous avez refusé cette collecte. \n*Notez bien que cela ne vous empêche pas d\'utiliser le service ^^*')
                     .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                     .setTimestamp()
 
