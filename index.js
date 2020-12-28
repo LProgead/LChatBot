@@ -44,7 +44,7 @@ client.on('message', message => {
             results.forEach(() => {
                 if (answerd != 1) {
                     answerd = 1;
-                    connection.query(`SELECT * FROM answers WHERE refer_to='${message.content.toLocaleLowerCase()}'`, function (error, results2, fields) {
+                    connection.query(`SELECT * FROM answers WHERE refer_to='${message.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
                         if (!results2 || !results2[0]) {
                             const unknown = new Discord.MessageEmbed()
                                 .setAuthor(message.author.username, message.author.displayAvatarURL())
@@ -103,7 +103,7 @@ client.on('message', message => {
                     collector.on('collect', answer => {
                         if (message.author.bot) return;
 
-                        connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase()}'`, function (error, results2, fields) {
+                        connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
                             if (!results2 || !results2[0]) {
                                 connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase()}', '${message.content.toLocaleLowerCase()}')`);
                                 const addembed = new Discord.MessageEmbed()
