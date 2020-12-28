@@ -8,7 +8,9 @@ client.login(process.env.token);
 client.on('ready', () => {
     console.log(`[DEMARRAGE] Lancé sur ${client.guilds.cache.size} serveurs avec ${client.users.cache.size} utilisateurs.`);
 
-    client.user.setActivity(`discuter avec ${client.users.cache.size} utilisateurs sur ${client.guilds.cache.size} serveurs !`)
+    setInterval(() => {
+        client.user.setActivity(`discuter avec ${client.users.cache.size} utilisateurs sur ${client.guilds.cache.size} serveurs !`);
+    }, 60000);
 });
 
 const connection = mysql.createConnection({
