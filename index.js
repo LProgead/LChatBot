@@ -93,7 +93,7 @@ client.on('message', message => {
                     .catch(() => {
                         message.channel.send(unknown_user);
                     });
-                
+
                 return connection.query(`INSERT INTO known_users (ID, discord) VALUES (NULL, '${message.author.id}')`);
             }
 
@@ -101,22 +101,24 @@ client.on('message', message => {
                 if (!results1 || !results1[0]) {
                     const collector = new Discord.MessageCollector(message.channel, m => m.author.id != message.author.id, { max: 1 });
                     collector.on('collect', answer => {
-                        if (answer.author.bot) return;
+                        if (!results1 || !results1[0]) {
+                            if (answer.author.bot) return;
 
-                        connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
-                            if (!results2 || !results2[0]) {
-                                connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase()}', '${message.content.toLocaleLowerCase()}')`);
-                                const addembed = new Discord.MessageEmbed()
-                                    .setAuthor('Phrase ajoutée')
-                                    .setColor('FAFAFA')
-                                    .setDescription(`L'utilisateur ${answer.author.tag} (${answer.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLocaleLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
-                                    .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
-                                    .setTimestamp()
+                            connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
+                                if (!results2 || !results2[0]) {
+                                    connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase()}', '${message.content.toLocaleLowerCase()}')`);
+                                    const addembed = new Discord.MessageEmbed()
+                                        .setAuthor('Phrase ajoutée')
+                                        .setColor('FAFAFA')
+                                        .setDescription(`L'utilisateur ${answer.author.tag} (${answer.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLocaleLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
+                                        .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
+                                        .setTimestamp()
 
-                                client.channels.cache.get('743054216368750602').send(addembed);
-                            }
-                        });
-                    })
+                                    client.channels.cache.get('743054216368750602').send(addembed);
+                                }
+                            });
+                        }
+                    });
                 }
             });
         });
