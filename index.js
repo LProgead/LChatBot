@@ -107,11 +107,11 @@ client.on('message', message => {
 
                                 connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
                                     if (!results2 || !results2[0]) {
-                                        connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase()}', '${message.content.toLocaleLowerCase()}')`);
+                                        connection.query(`INSERT INTO answers (ID, content, refer_to) VALUES (NULL, '${answer.content.toLocaleLowerCase().replace("'", "\\'")}', '${message.content.toLowerCase().replace("'", "\\'")}')`);
                                         const addembed = new Discord.MessageEmbed()
                                             .setAuthor('Phrase ajoutée')
                                             .setColor('FAFAFA')
-                                            .setDescription(`L'utilisateur ${answer.author.tag} (${answer.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLocaleLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
+                                            .setDescription(`L'utilisateur ${answer.author.tag} (${answer.author.id}) m'a permis d'ajouter une nouvelle réponse à **${message.content.toLowerCase()}** grâce à son message : \n\`\`\`${answer.content}\`\`\``)
                                             .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                                             .setTimestamp()
 
