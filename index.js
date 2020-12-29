@@ -35,7 +35,8 @@ client.on('message', message => {
                 .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                 .setTimestamp()
 
-            return message.channel.send(saved);
+            message.channel.send(saved);
+            return connection.end();
         }
 
         let answerd = 0;
@@ -61,7 +62,8 @@ client.on('message', message => {
                                 .setFooter('LChatBot, un bot signé LProgead.', client.user.displayAvatarURL())
                                 .setTimestamp()
 
-                            return client.channels.cache.get('743017774942650390').send(dkembed);
+                            client.channels.cache.get('743017774942650390').send(dkembed);
+                            return connection.end();
                         }
 
                         let tosend = results2[Math.floor(Math.random() * Math.floor(results2.length))]['content'];
@@ -94,7 +96,8 @@ client.on('message', message => {
                         message.channel.send(unknown_user);
                     });
 
-                return connection.query(`INSERT INTO known_users (ID, discord) VALUES (NULL, '${message.author.id}')`);
+                connection.query(`INSERT INTO known_users (ID, discord) VALUES (NULL, '${message.author.id}')`);
+                return connection.end();
             }
 
             connection.query(`SELECT * FROM record WHERE discord = '${message.author.id}'`, function (error, results1, fields) {
@@ -102,6 +105,7 @@ client.on('message', message => {
                     const collector = new Discord.MessageCollector(message.channel, m => m.author.id != message.author.id, { max: 1 });
                     collector.on('collect', answer => {
                         if (!results1 || !results1[0]) {
+                            print(results1);
                             if (answer.author.bot) return;
 
                             connection.query(`SELECT * FROM sentences WHERE content = '${answer.content.toLocaleLowerCase().replace("'", "\\'")}'`, function (error, results2, fields) {
@@ -115,6 +119,7 @@ client.on('message', message => {
                                         .setTimestamp()
 
                                     client.channels.cache.get('743054216368750602').send(addembed);
+                                    return connection.end();
                                 }
                             });
                         }
