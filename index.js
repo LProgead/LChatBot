@@ -101,7 +101,7 @@ client.on('message', message => {
                 if (!results1 || !results1[0]) {
                     const collector = new Discord.MessageCollector(message.channel, m => m.author.id != message.author.id, { max: 1 });
                     collector.on('collect', answer => {
-                        connection.query(`SELECT * FROM record WHERE discord = '${message.author.id}'`, function (error, results1, fields) {
+                        connection.query(`SELECT * FROM record WHERE discord = '${answer.author.id}'`, function (error, results1, fields) {
                             if (!results1 || !results1[0]) {
                                 if (answer.author.bot) return;
 
